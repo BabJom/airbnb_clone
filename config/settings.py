@@ -36,14 +36,20 @@ DJANGO_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
 ]
+THIRD_PARTY_APPS = [
+    "django_countries",
+]
+
 # Project apps
 PROJECT_APPS = [
+    "core.apps.CoreConfig",
     "users.apps.UsersConfig",
+    "rooms.apps.RoomsConfig",
 ]
 
 # Application definition
 
-INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS
+INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS + THIRD_PARTY_APPS
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
