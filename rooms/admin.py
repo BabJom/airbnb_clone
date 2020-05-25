@@ -1,40 +1,24 @@
 from django.contrib import admin
 from . import models
 
-# from core import models as core_models
 
-
-@admin.register(models.RoomType)
+@admin.register(models.RoomType, models.Amenity, models.Facility, models.HouseRule)
 class ItemAdmin(admin.ModelAdmin):
-    """ add item in roomType"""
-
-    pass
-
-
-@admin.register(models.Amenity)
-class ItemAdmin(admin.ModelAdmin):
-    """ add item in Amenity"""
-
-    pass
-
-
-@admin.register(models.Facility)
-class ItemAdmin(admin.ModelAdmin):
-    """ add item in Facility"""
-
-    pass
-
-
-@admin.register(models.HouseRule)
-class ItemAdmin(admin.ModelAdmin):
-    """ add item in HouseRule"""
+    """ Item Admin Definition"""
 
     pass
 
 
 @admin.register(models.Room)
 class RoomAdmin(admin.ModelAdmin):
-    """ Room Admin """
+    """ Room Admin Definition"""
 
     readonly_fields = ("updated", "created")
+    pass
+
+
+@admin.register(models.Photo)
+class PhotoAdmin(admin.ModelAdmin):
+    """Photo Admin Definition"""
+
     pass
