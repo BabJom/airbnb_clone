@@ -13,6 +13,26 @@ class ItemAdmin(admin.ModelAdmin):
 class RoomAdmin(admin.ModelAdmin):
     """ Room Admin Definition"""
 
+    list_display = (
+        "name",
+        "country",
+        "city",
+        "price",
+        "address",
+        "guests",
+        "beds",
+        "bedrooms",
+        "bathrooms",
+        "check_in",
+        "check_out",
+        "instant_books",
+    )
+    list_filter = (
+        "instant_books",
+        "city",
+        "country",
+    )
+    search_fields = ("city", "^host__username")
     readonly_fields = ("updated", "created")
     pass
 
