@@ -59,7 +59,7 @@ class Photo(core_models.TimeStampedModel):
 
     caption = models.CharField(max_length=80)
     img_file = models.ImageField(blank=True)
-    room = models.ForeignKey("Room", on_delete=models.CASCADE)
+    room = models.ForeignKey("Room", related_name="photos", on_delete=models.CASCADE)
 
     def __str__(self):
         return self.caption
@@ -83,12 +83,16 @@ class Room(core_models.TimeStampedModel):
     check_in = models.TimeField()
     check_out = models.TimeField()
     instant_books = models.BooleanField(default=False)
-    host = models.ForeignKey("users.User", on_delete=models.CASCADE)
+    host = models.ForeignKey(
+        "users.User", related_name="rooms", on_delete=models.CASCADE
+    )
     # host 는 유저와 연동
-    room_type = models.ForeignKey("RoomType", on_delete=models.SET_NULL, null=True)
-    amenities = models.ManyToManyField("Amenity", blank=True)
-    facilities = models.ManyToManyField("Facility", blank=True)
-    house_rule = models.ManyToManyField("HouseRule", blank=True)
+    room_type = models.ForeignKey(
+        "RoomType", related_name="rooms", on_delete=models.SET_NULL, null=True
+    )
+    amenities = models.ManyToManyField("Amenity", related_name="rooms", blank=True)
+    facilities = models.ManyToManyField("Facility", related_name="rooms", blank=True)
+    house_rule = models.ManyToManyField("HouseRule", related_name="rooms", blank=True)
 
     def __str__(self):
         return self.name
